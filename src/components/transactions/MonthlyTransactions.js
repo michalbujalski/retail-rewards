@@ -1,6 +1,7 @@
 import { getMonthName } from '../../helpers/date';
 import TransactionItem from './TransactionItem';
 import styles from './MonthlyTransactions.module.css';
+import PropTypes from 'prop-types';
 
 const MonthlyTransactions = ({ transactions, month }) => {
   return (
@@ -18,6 +19,11 @@ const MonthlyTransactions = ({ transactions, month }) => {
       </h3>
     </div>
   );
+};
+
+MonthlyTransactions.propTypes = {
+  transactions: PropTypes.array.isRequired,
+  month: PropTypes.string.isRequired
 };
 
 export default MonthlyTransactions;

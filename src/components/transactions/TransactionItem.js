@@ -1,6 +1,7 @@
 import { formatAmount } from '../../helpers/amount';
 import { formatDate } from '../../helpers/date';
 import styles from './TransactionItem.module.css';
+import PropTypes from 'prop-types';
 
 const TransactionItem = ({ transaction }) => {
   const { amount, name, timestamp, reward } = transaction;
@@ -15,4 +16,7 @@ const TransactionItem = ({ transaction }) => {
   );
 };
 
+TransactionItem.propTypes = {
+  transaction: PropTypes.object.isRequired
+};
 export default TransactionItem;
