@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchTransactions } from '../api';
+import { calculateReward } from '../helpers/rewords';
 
 const TransactionsContext = createContext({});
 
@@ -15,8 +16,15 @@ const TransactionsProvider = ({ children }) => {
       setError(null);
       setIsLoading(true);
       const newTransactions = await fetchTransactions();
-      console.log(newTransactions);
-      setTransactions(newTransactions);
+
+      setTransactions(
+        newTransactions.map((transaction) => {
+          return {
+            ...transaction,
+            reward: calculateReward(transaction.amount)
+          };
+        })
+      );
     } catch (err) {
       console.log(err);
       setError(err);
